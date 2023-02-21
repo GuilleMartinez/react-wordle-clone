@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --max-cells: 6;
+    --cell-width: 60px;
+    --cell-height: 60px;
+    --cell-font-size: 60px;
+    --cell-border-color: #edeff1;
+    --board-width: calc(var(--cell-width) * var(--max-cells));
+    --board-height: calc(var(--cell-height) * var(--max-cells) + 60px );
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-width);
+    height: var(--cell-height);
+    font-size: 2rem;
+    border: 2px solid var(--cell-border-color);
+}
+
+.cell-container {
+    display: flex;
+    width: var(--board-width);
+    justify-content: space-between;
+}
+
+.guess-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: max-content;
+    height: var(--board-height);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.success {
+    background-color: green;
+}
+
+.warning {
+    background-color: orange;
+}
+
+.info {
+    background-color: whitesmoke;
+}

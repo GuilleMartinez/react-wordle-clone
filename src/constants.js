@@ -1,0 +1,5 @@
+const MAX_ATTEMPS = 6;
+const MAX_WORD_LENGTH = 5;
+const ANSWER = "ETNIA";
+
+export { MAX_ATTEMPS, MAX_WORD_LENGTH, ANSWER };
