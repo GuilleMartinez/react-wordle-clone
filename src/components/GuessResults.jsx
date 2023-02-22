@@ -1,12 +1,15 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import checkPrediciton from "../utils";
 
-function GuessCells({ letters }) {
+function GuessCell({ prediction }) {
+  const predictionResults = checkPrediciton(prediction);
+
   return (
-    <li className="cell-container">
-      {letters.map((letter) => (
-        <span key={uuidv4()} className={`cell ${letter.status}`}>
-          {letter.letter}
+    <li className="cells">
+      {predictionResults.map((result) => (
+        <span key={uuidv4()} className={`cell ${result.status}`}>
+          {result.char}
         </span>
       ))}
     </li>
@@ -16,8 +19,8 @@ function GuessCells({ letters }) {
 function GuessResults({ predictions }) {
   return (
     <ol className="guess-results">
-      {predictions.map(({ evaluation }) => (
-        <GuessCells key={uuidv4()} letters={evaluation.result} />
+      {predictions.map((prediction) => (
+        <GuessCell key={uuidv4()} prediction={prediction} />
       ))}
     </ol>
   );

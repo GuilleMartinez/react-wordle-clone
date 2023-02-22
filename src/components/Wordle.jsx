@@ -1,44 +1,41 @@
 import React, { useRef, useState } from "react";
-import { MAX_ATTEMPS } from "../constants";
+import { INITIAL_STATE, ANSWER, MAX_ATTEMPS } from "../constants";
 
 import GuessForm from "./GuessForm";
 import GuessResults from "./GuessResults";
-
-import Evaluation from "../Evaluation";
-
-const initialState = new Array(MAX_ATTEMPS).fill(new Evaluation());
+import GameMessage from "./GameMessage";
 
 function Wordle() {
   
-  const [predictions, setPredictions] = useState(initialState);
-  
-  const game = useRef({ winner: false, stopPlaying: false });
+  const [predictions, setPredictions] = useState(INITIAL_STATE);
 
-  const attemp = useRef(0);
+  const game = useRef({ winner: false, finished: false });
 
-  const validatePrediction = (word) => {
+  const attemps = useRef(0);
 
-    const test = new Evaluation(word);
-    const haveAttemps = attemp.current < MAX_ATTEMPS;
-
-    if (test.evaluation.winner) game.current = { winner: true, stopPlaying: true };
-    else if (!haveAttemps) game.current = { winner: false, stopPlaying: true };
-
-    
+  const updateGameStatus = (word) => {
     const guesses = [...predictions];
-    guesses[attemp.current] = test;
 
-    attemp.current += 1;
+    guesses[attemps.current] = word;
+
+    attemps.current += 1;
+
+    if (ANSWER === word) game.current = { winner: true, finished: true };
+    else if (MAX_ATTEMPS <= attemps.current) game.current.finished = true;
+
+
+    console.log(game.current);
     setPredictions(guesses);
-      
   };
 
   return (
     <>
-      <GuessResults predictions={predictions} attemp={attemp.current} />
+      <GuessResults predictions={predictions} />
       <GuessForm
-        stopPlaying={game.current.stopPlaying}
-        validatePrediction={validatePrediction} />
+        updateGameStatus={updateGameStatus}
+        stopPlaying={game.current.winner || game.current.finished}
+      />
+      { game.current.finished && <GameMessage winner={ game.current.winner } attemps={ attemps.current } />} 
     </>
   );
 }

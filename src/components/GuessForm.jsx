@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { MAX_WORD_LENGTH } from "../constants";
 
-function GuessForm({ validatePrediction, stopPlaying }) {
+function GuessForm({ updateGameStatus, stopPlaying }) {
   
   const [userGuess, setUserGuess] = useState("");
 
@@ -10,7 +10,7 @@ function GuessForm({ validatePrediction, stopPlaying }) {
     event.preventDefault();
     const submittedData = new FormData(event.target);
     const word = submittedData.get("user-prediction");
-    validatePrediction(word);
+    updateGameStatus(word);
     setUserGuess("");
   };
 
@@ -28,7 +28,7 @@ function GuessForm({ validatePrediction, stopPlaying }) {
     >
       <fieldset disabled={stopPlaying}>
         <legend>Required Inputs</legend>
-        <label htmlFor="user-prediction">Your Prediction:</label>
+        <label htmlFor="user-prediction">Your prediction</label>
         <input
           type="text"
           id="user-prediction"
@@ -37,10 +37,11 @@ function GuessForm({ validatePrediction, stopPlaying }) {
           title="Five letters word"
           value={userGuess}
           onInput={changeHandler}
+          maxLength={MAX_WORD_LENGTH}
           required
         />
 
-        <button type="submit"> Check yoour guess</button>
+        <button type="submit"> Check</button>
 
       </fieldset>
     </form>

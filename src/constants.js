@@ -1,5 +1,6 @@
 const MAX_ATTEMPS = 6;
 const MAX_WORD_LENGTH = 5;
-const ANSWER = "ETNIA";
+const ANSWER = "ANTES";
+const INITIAL_STATE = new Array(MAX_ATTEMPS).fill(" ".repeat(MAX_WORD_LENGTH));
 
-export { MAX_ATTEMPS, MAX_WORD_LENGTH, ANSWER };
+export { ANSWER, INITIAL_STATE, MAX_ATTEMPS, MAX_WORD_LENGTH };

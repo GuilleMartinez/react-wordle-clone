@@ -2,53 +2,118 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: monospace;
 }
 
 :root {
-    --max-cells: 6;
+    --max-cells: 5;
+
     --cell-width: 60px;
-    --cell-height: 60px;
     --cell-font-size: 60px;
     --cell-border-color: #edeff1;
     --board-width: calc(var(--cell-width) * var(--max-cells));
     --board-height: calc(var(--cell-height) * var(--max-cells) + 60px );
 }
 
+.correct {
+    background-color: green;
+    color: white;
+}
+
+.incongruent {
+    background-color: orange;
+}
+
+.incorrect {
+    background-color: whitesmoke;
+}
+
+.guess-results {
+    display: grid;
+    width: max-content;
+    height: 100%;
+    margin: 0  auto;
+    padding: 10px;
+    gap: 5px;
+}
+
+.cells {
+    display: grid;
+    grid-template-columns: repeat(var(--max-cells), 1fr);
+    gap: 5px;
+}
+
+
 .cell {
     display: flex;
     justify-content: center;
     align-items: center;
     width: var(--cell-width);
-    height: var(--cell-height);
+    height: var(--cell-width);
     font-size: 2rem;
     border: 2px solid var(--cell-border-color);
 }
 
-.cell-container {
-    display: flex;
-    width: var(--board-width);
-    justify-content: space-between;
-}
 
-.guess-results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: max-content;
-    height: var(--board-height);
+
+form {
     margin: 0 auto;
-    padding: 1rem;
+    width: 350px;
+    padding: 30px;
 }
 
-.success {
-    background-color: green;
+fieldset {
+    border: none;
 }
 
-.warning {
-    background-color: orange;
+fieldset legend {
+    display: none;
+    font-size:  1rem;
+    padding: 5px;
 }
 
-.info {
-    background-color: whitesmoke;
+
+
+form label {
+     display: block;
+     font-size: 1.2rem;
+}
+
+form input[type="text"] {
+     padding: 2px;
+     height: 40px;
+     display: block;
+     width: 100%;
+     margin-bottom: 10px;
+}
+
+form input[type="text"]:focus {
+     font-size: 2rem;
+     letter-spacing:  0.25rem;
+     transition: font-size 0.1s ease-in-out;
+}
+
+form button[type="submit"] { 
+    display: block;
+    width: 50%;
+    height: 35px;
+    background-color: black;
+    color: white;
+}
+
+.box {
+     font-size: 1.5rem;
+     position: relative;
+     padding: 10px;
+     width: 50vw;
+     text-align: center;
+     margin: 0 auto;
+     animation: popup .1s;
+     
+}
+
+@keyframes popup {
+
+    0% { top: 100%;}
+    100% { top: 0; }
 }
