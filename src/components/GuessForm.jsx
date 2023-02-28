@@ -3,7 +3,6 @@ import { useState } from "react";
 import { MAX_WORD_LENGTH } from "../constants";
 
 function GuessForm({ updateGameStatus, stopPlaying }) {
-  
   const [userGuess, setUserGuess] = useState("");
 
   const submitHandler = (event) => {
@@ -20,12 +19,7 @@ function GuessForm({ updateGameStatus, stopPlaying }) {
   };
 
   return (
-
-    <form
-      autoComplete="OFF"
-      method="POST"
-      onSubmit={submitHandler}
-    >
+    <form autoComplete="OFF" method="POST" onSubmit={submitHandler}>
       <fieldset disabled={stopPlaying}>
         <legend>Required Inputs</legend>
         <label htmlFor="user-prediction">Your prediction</label>
@@ -42,7 +36,6 @@ function GuessForm({ updateGameStatus, stopPlaying }) {
         />
 
         <button type="submit"> Check</button>
-
       </fieldset>
     </form>
   );
