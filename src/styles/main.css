@@ -106,6 +106,10 @@ form button[type="submit"] {
   animation: popup 0.1s;
 }
 
+.text-centered {
+   text-align: center;
+}
+
 @keyframes popup {
   0% {
     top: 100%;

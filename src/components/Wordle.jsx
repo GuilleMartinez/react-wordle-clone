@@ -28,6 +28,7 @@ function Wordle() {
 
   return (
     <>
+      <h1 className="text-centered">Let's play spanish wordle!</h1>
       <GuessResults predictions={predictions} />
       <GuessForm
         updateGameStatus={updateGameStatus}

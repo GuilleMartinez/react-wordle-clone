@@ -27,7 +27,7 @@ function GuessForm({ updateGameStatus, stopPlaying }) {
           type="text"
           id="user-prediction"
           name="user-prediction"
-          pattern={`[A-Z]{${MAX_WORD_LENGTH}}`}
+          pattern={`[A-zÀ-ú]{${MAX_WORD_LENGTH}}`}
           title="Five letters word"
           value={userGuess}
           onInput={changeHandler}
